@@ -11,12 +11,14 @@ G = nx.Graph()
 # H.add_node(1, color = 'yellow')
 # H.add_node(2, color = 'blue')
 
-edgelist = [(0, 1, {'color': 'red'}, ), (2, 0, {'color': 'yellow'}), (1, 2, {'color': 'blue'})]
-H = nx.Graph(edgelist)
-print(H.graph)
+edgelist = [(0, 1, {'color': 'red'}), (2, 0, {'color': 'yellow'}), (1, 2, {'color': 'blue'})]
+H = nx.DiGraph(edgelist)
+print(H.edges)
 # H.add_edge()
 
 # H.add_edges_from(edgelist)
 
-nx.draw(H, with_labels=True, node_color = 'g', edge_color = 'edge_color')
+# node_color = 'g'
+# edge_color = 'b'
+nx.draw(H, with_labels=True)
 plt.show()
