@@ -22,17 +22,19 @@ a = nodenumberslist[z]
 b = nodenumberslist[0]
 tuple2 = (a, b)
 newedgelist.append(tuple2)
-tuple3 = a, "to", b
+# tuple3 = a, "to", b
+string1 = str(a) + " to " + str(b)
 # tuple4 = tuple2: tuple3
-edgelabelsdictionary[tuple2] = tuple3
+edgelabelsdictionary[tuple2] = string1
 for h in range(len(nodenumberslist)):
     if h + 1 != len(nodenumberslist):
         q = nodenumberslist[h]
         u = nodenumberslist[h + 1]
         tuple1 = (q, u)
         newedgelist.append(tuple1)
-        tuple5 = q, "to", u
-        edgelabelsdictionary[tuple1] = tuple5
+        # tuple5 = q, "to", u
+        string2 = str(q) + " to " + str(u)
+        edgelabelsdictionary[tuple1] = string2
 
 H = nx.DiGraph(newedgelist)
 
@@ -46,6 +48,6 @@ H = nx.DiGraph(newedgelist)
 # node_color = 'g'
 # edge_color = 'b'
 pos = nx.spring_layout(H)
-nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary)
-nx.draw(H, with_labels=True)
+nx.draw(H, pos = pos, with_labels=True)
+nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary, label_pos = 0.5, font_weight = 'bold')
 plt.show()
