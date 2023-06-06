@@ -11,8 +11,15 @@ import networkx as nx
 # H.add_node(1, color = 'yellow')
 # H.add_node(2, color = 'blue')
 
+r = input("How many states would you like? There will be a 0th state. \n")
+# v = int(r) + 1
+# if type(r) == int:
+#     v = int(r) + 1
+# else:
+#     TypeError
+
 nodenumberslist = []
-for i in range(1, 5):
+for i in range(0, int(r)):
     nodenumberslist.append(i)
 
 newedgelist = []
