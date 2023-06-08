@@ -62,5 +62,12 @@ nx.draw(H, pos = pos, with_labels=True)
 nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary, label_pos = 0.5, font_weight = 'bold')
 plt.show()
 
+l = 0
+j = 4
 # method='bellman-ford'
-print(nx.shortest_path(H, source=0, target=4, weight=None))
+pathlist = nx.shortest_path(H, source=l, target=j, weight=None)
+print("The path from " + str(l) + " to " + str(j) + " is:")
+for k in range(len(pathlist)):
+    if k + 1 != len(set(pathlist)):
+        print(str(pathlist[k]) + " to " + str(pathlist[k + 1]))
+
