@@ -1,8 +1,3 @@
-# i was originally going to experiment with finding if certain nodes are adjacent to each other on this file...
-# i will figure this out eventually. right now, this program generates circle-shaped closed loops using a certain number
-# of nodes (states) input by the user.
-
-
 import matplotlib.pyplot as plt
 import networkx as nx
 # G = nx.Graph()
@@ -60,7 +55,7 @@ H = nx.DiGraph(newedgelist)
 # node_color = 'g'
 # edge_color = 'b'
 
-# print(H.adjacency())
+print(H.adjacency())
 
 pos = nx.spring_layout(H)
 nx.draw(H, pos = pos, with_labels=True)
