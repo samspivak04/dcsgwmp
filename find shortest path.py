@@ -55,9 +55,12 @@ H = nx.DiGraph(newedgelist)
 # node_color = 'g'
 # edge_color = 'b'
 
-print(H.adjacency())
+# print(H.adjacency())
 
 pos = nx.spring_layout(H)
 nx.draw(H, pos = pos, with_labels=True)
 nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary, label_pos = 0.5, font_weight = 'bold')
 plt.show()
+
+# method='bellman-ford'
+print(nx.shortest_path(H, source=0, target=4, weight=None))
