@@ -62,10 +62,11 @@ nx.draw(H, pos = pos, with_labels=True)
 nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary, label_pos = 0.5, font_weight = 'bold')
 plt.show()
 
-l = 0
-j = 4
+e = int(r) - 1
+l = input("Find the shortest path: What would you like your beginning state to be?\nChoose from 0 to " + str(e) + ".\n")
+j = input("What you like your ending state to be?\nChoose from 0 to " + str(e) + ".\n")
 # method='bellman-ford'
-pathlist = nx.shortest_path(H, source=l, target=j, weight=None)
+pathlist = nx.shortest_path(H, source=int(l), target=int(j), weight=None)
 print("The path from " + str(l) + " to " + str(j) + " is:")
 for k in range(len(pathlist)):
     if k + 1 != len(set(pathlist)):
