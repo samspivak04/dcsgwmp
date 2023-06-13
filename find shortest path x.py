@@ -75,15 +75,21 @@ while shortestpathbool == "yes":
     try:
         pathlist = nx.shortest_path(H, source=int(l), target=int(j), weight=None)
     except nx.NetworkXNoPath:
-        print("new block of code here")
-        # weird machine here
+        # print("new block of code here")
+        H.add_edge(int(l), int(j))
+        print("The path from " + str(l) + " to " + str(j) + " is:")
+        for k in range(len(pathlist)):
+            if k + 1 != len(set(pathlist)):
+                print(str(pathlist[k]) + " to " + str(pathlist[k + 1]))
+        shortestpathbool = input("Would you like to find the shortest path between two states?\n"
+                                 "Type yes or no.\n")
     else:
         print("The path from " + str(l) + " to " + str(j) + " is:")
         for k in range(len(pathlist)):
             if k + 1 != len(set(pathlist)):
                 print(str(pathlist[k]) + " to " + str(pathlist[k + 1]))
         shortestpathbool = input("Would you like to find the shortest path between two states?\n"
-                                 "Type True for yes and False for no.\n")
+                                 "Type yes or no.\n")
 else:
     print("")
 
