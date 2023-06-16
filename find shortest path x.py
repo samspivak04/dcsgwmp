@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+
+fileobject = open('path_data.txt', 'w', encoding="utf-8")
+
 # G = nx.Graph()
 
 # [currentstate, testinginput]: nextstate
@@ -14,7 +17,7 @@ import networkx as nx
 r = 20
 
 for p in range(1, int(r)):
-
+    fileobject.write("starting with probability 1 / " + str(p) + "\n")
 
 
 
@@ -69,7 +72,9 @@ for p in range(1, int(r)):
     pos = nx.spring_layout(H)
     nx.draw(H, pos = pos, with_labels=True)
     nx.draw_networkx_edge_labels(H, pos = pos, edge_labels = edgelabelsdictionary, label_pos = 0.5, font_weight = 'bold')
+    plt.savefig("graph_" + str(p) + ".png")
     plt.show()
+
 
     e = int(r) - 1
     l = 0
@@ -79,6 +84,7 @@ for p in range(1, int(r)):
         pathlist = nx.shortest_path(H, source=int(l), target=int(j), weight=None)
     except nx.NetworkXNoPath:
         print("new edge will be created then deleted")
+        fileobject.write("new edge will be created then deleted\n")
         H.add_edge(int(l), int(j))
         print("The path from " + str(l) + " to " + str(j) + " is:")
         for k in range(len(pathlist)):
@@ -98,3 +104,4 @@ for p in range(1, int(r)):
 
 # make sure new node and target do not display (weird aspect)
 #
+fileobject.close()
