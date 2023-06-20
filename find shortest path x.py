@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-fileobject = open('path_data.txt', 'w', encoding="utf-8")
+fileobject = open('path_data.csv', 'w', encoding="utf-8")
 
 # G = nx.Graph()
 
@@ -15,9 +15,11 @@ fileobject = open('path_data.txt', 'w', encoding="utf-8")
 # H.add_node(2, color = 'blue')
 
 r = 20
-
-for p in range(1, int(r)):
+rr = r + 1
+for p in range(1, int(rr)):
     fileobject.write("starting with probability 1 / " + str(p) + "\n")
+    if p == r - 1:
+        fileobject.write("critical edge probability reached! probability 1 / " + str(p) + "\n")
 
 
 
@@ -87,15 +89,19 @@ for p in range(1, int(r)):
         fileobject.write("new edge will be created then deleted\n")
         H.add_edge(int(l), int(j))
         print("The path from " + str(l) + " to " + str(j) + " is:")
+        fileobject.write("The path from " + str(l) + " to " + str(j) + " is:" + "\n")
         for k in range(len(pathlist)):
             if k + 1 != len(set(pathlist)):
                 print(str(pathlist[k]) + " to " + str(pathlist[k + 1]))
+                fileobject.write(str(pathlist[k]) + " to " + str(pathlist[k + 1]) + "\n")
         H.remove_edge(int(l), int(j))
     else:
         print("The path from " + str(l) + " to " + str(j) + " is:")
+        fileobject.write("The path from " + str(l) + " to " + str(j) + " is:" + "\n")
         for k in range(len(pathlist)):
             if k + 1 != len(set(pathlist)):
                 print(str(pathlist[k]) + " to " + str(pathlist[k + 1]))
+                fileobject.write(str(pathlist[k]) + " to " + str(pathlist[k + 1]) + "\n")
 
 # when "raise nx.NetworkXNoPath(f"No path between {source} and {target}.")"...
 # networkx.exception.NetworkXNoPath: No path between 3 and 2." ...
