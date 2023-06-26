@@ -110,4 +110,10 @@ for p in range(1, int(rr)):
 
 # make sure new node and target do not display (weird aspect)
 #
+
+# make r n and make p actually p
+# make p print as a fraction
+# fix edge labels generator
+# figure out probability of path generation between states (nodes)
+# find weird state transitions
 fileobject.close()
