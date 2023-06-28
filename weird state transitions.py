@@ -8,7 +8,7 @@ numberofnodes = 50
 criticaledgeprobability = 1 / (numberofnodes - 1)
 
 
-for probabilitydenominator in range(1, int(numberofnodes)):
+for probabilitydenominator in range(1, int(numberofnodes)): # create more accurate range
     fileobject.write("starting with probability 1 / " + str(probabilitydenominator) + "\n")
     if probabilitydenominator == numberofnodes - 1:
         fileobject.write("critical edge probability reached! probability 1 / " + str(probabilitydenominator) + "\n")
