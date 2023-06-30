@@ -117,3 +117,6 @@ for p in range(1, int(rr)):
 # figure out probability of path generation between states (nodes)
 # find weird state transitions
 fileobject.close()
+
+# as the number of nodes increases, how does the probability of there being a path between two nodes change?
+# as the number of nodes between two nodes increases, how does the probability of there being a path between two nodes change?
