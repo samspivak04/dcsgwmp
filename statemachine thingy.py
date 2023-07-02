@@ -39,20 +39,28 @@ fileobject.close()
 
 
 class TrafficLightMachine(StateMachine):
-    """A traffic light machine"""
-    green = State(initial=True)
-    yellow = State()
-    red = State()
+    """StateMachine is SM"""
+    for node in list(H.nodes):
+        node = State()
+    # green = State(initial=True)
+    # yellow = State()
+    # red = State()
 
-    cycle = (
-        green.to(yellow)
-        | yellow.to(red)
-        | red.to(green)
-    )
+    # range(len(list(H.edges)))
+    for nodestupleSM in H.edges:
+        (firstnodeSM, secondnodeSM) = nodestupleSM
+        move = (
+            firstnodeSM.to(secondnodeSM)
+        )
+    # cycle = (
+    #     green.to(yellow)
+    #     | yellow.to(red)
+    #     | red.to(green)
+    # )
 
-    def before_cycle(self, event: str, source: State, target: State, message: str = ""):
+    def before_move(self, event: str, source: State, target: State, message: str = ""):
         message = ". " + message if message else ""
-        return f"Running {event} from {source.id} to {target.id}{message}"
+        return f"{event} from {source.id} to {target.id}{message}"
 
     def on_enter_red(self):
         print("Don't move.")
@@ -62,5 +70,5 @@ class TrafficLightMachine(StateMachine):
 
 
 test = TrafficLightMachine()
-print(test.send("cycle"))
+print(test.send("move"))
 print(test.current_state.id)

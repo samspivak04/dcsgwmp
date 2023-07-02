@@ -120,3 +120,4 @@ fileobject.close()
 
 # as the number of nodes increases, how does the probability of there being a path between two nodes change?
 # as the number of nodes between two nodes increases, how does the probability of there being a path between two nodes change?
+# how to manufacture input to get to states that are not connected to anything (unreachable states)?
