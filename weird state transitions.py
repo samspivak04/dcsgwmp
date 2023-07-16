@@ -23,15 +23,18 @@ def unreachablenodescolors(H):
     return nodecolors
 
 fileobject = open('path_data_weird_state_transitions.csv', 'w', encoding="utf-8")
+fileobject.write("probability")
+fileobject.write(",# original unreachable nodes")
+fileobject.write(",,# previously unreachable nodes now reachable\n")
 
 numberofnodes = 13
 criticaledgeprobability = 1 / (numberofnodes - 1)
 
 
 for probabilitydenominator in range(1, int(numberofnodes * 2)):  # create more accurate range
-    fileobject.write("starting with probability 1 / " + str(probabilitydenominator) + "\n")
+    fileobject.write(str(1 / probabilitydenominator))
     if probabilitydenominator == numberofnodes - 1:
-        fileobject.write("critical edge probability reached! probability 1 / " + str(probabilitydenominator) + "\n")
+        fileobject.write(" critical edge probability reached! 1 / " + str(probabilitydenominator))
     if round((1 / int(probabilitydenominator)), 2) == 0:
         fileobject.write("probability of connectivity too low. probability 1 / " + str(probabilitydenominator) + "\n")
         raise Exception("probability of connectivity too low. probability 1 / " + str(probabilitydenominator) + "\n")
@@ -39,7 +42,7 @@ for probabilitydenominator in range(1, int(numberofnodes * 2)):  # create more a
     # generate erdos renyi graph
     H = nx.erdos_renyi_graph(numberofnodes, (1 / int(probabilitydenominator)), seed=5, directed=True)
     # J = copy.deepcopy(H)
-    J = nx.erdos_renyi_graph(numberofnodes, criticaledgeprobability, seed=5, directed=True)
+    J = nx.erdos_renyi_graph(numberofnodes, (1/20), seed=5, directed=True)
     K = copy.deepcopy(H)
     K.add_edges_from([e for e in J.edges])
     # J.add_edges_from([e for e in S.edges])
@@ -48,8 +51,10 @@ for probabilitydenominator in range(1, int(numberofnodes * 2)):  # create more a
     edgelabelsdictJ = edgelabelsfunction(J)
 
     unreachablenodescolorsH = unreachablenodescolors(H)
+    unreachablenodesH = len(list(nx.isolates(H)))
     unreachablenodesK = len(list(nx.isolates(H))) - len(list(nx.isolates(K)))
-    fileobject.write("The amount of previously unreachable nodes that are now reachable is " + str(unreachablenodesK) + ".\n")
+    fileobject.write("," + str(unreachablenodesH))
+    fileobject.write(",," + str(unreachablenodesK) + "\n")
 
     # # method='bellman-ford'
     # try:
@@ -78,7 +83,7 @@ for probabilitydenominator in range(1, int(numberofnodes * 2)):  # create more a
 
     # display everything
     pos = nx.spring_layout(H)
-    nx.draw(J, pos=pos, with_labels=True, node_color=unreachablenodescolorsH, edge_color="green")
+    nx.draw(J, pos=pos, with_labels=True, node_color=unreachablenodescolorsH, edge_color="tab:blue")
     nx.draw_networkx_edge_labels(J, pos=pos, edge_labels=edgelabelsdictH, label_pos=0.5, font_weight='bold')
     nx.draw(H, pos=pos, with_labels=True, node_color=unreachablenodescolorsH)
     nx.draw_networkx_edge_labels(H, pos=pos, edge_labels=edgelabelsdictH, label_pos=0.5, font_weight='bold')
